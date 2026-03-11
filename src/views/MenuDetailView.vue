@@ -5,8 +5,8 @@ const route = useRoute()
 </script>
 
 <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Recipe Details: {{ route.params.id }}</h2>
-    <p class="text-slate-600">View details for a specific recipe.</p>
-  </div>
+  <section class="space-y-2">
+    <h1 class="page-heading">Recipe Details: {{ route.params.id }}</h1>
+    <p class="text-base text-secondary">View details for a specific recipe.</p>
+  </section>
 </template>

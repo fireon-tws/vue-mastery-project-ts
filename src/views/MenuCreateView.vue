@@ -1,9 +1,6 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Add New Recipe</h2>
-    <p class="text-slate-600">Form to create a new recipe.</p>
-  </div>
+  <section class="space-y-2">
+    <h1 class="page-heading">Add New Recipe</h1>
+    <p class="text-base text-secondary">Form to create a new recipe.</p>
+  </section>
 </template>

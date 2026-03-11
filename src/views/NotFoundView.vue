@@ -4,9 +4,12 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <div class="text-center py-12">
-    <h2 class="text-4xl font-bold text-slate-900 mb-4">404 - Page Not Found</h2>
-    <p class="text-slate-600 mb-8">The page you are looking for does not exist.</p>
-    <RouterLink to="/" class="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">
+    <h2 class="section-heading mb-4">404 - Page Not Found</h2>
+    <p class="mb-8 text-secondary">The page you are looking for does not exist.</p>
+    <RouterLink
+      to="/"
+      class="inline-flex rounded-card bg-brand-primary px-6 py-3 text-on-accent transition-opacity hover:opacity-90"
+    >
       Go back home
     </RouterLink>
   </div>

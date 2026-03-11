@@ -56,20 +56,16 @@ function isActive(item: NavItem) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-app text-app-text md:flex">
-    <aside class="border-app-line bg-white md:flex md:h-screen md:w-64 md:flex-col md:border-r">
-      <div class="border-app-line border-b px-4 py-6 md:px-6">
+  <div class="min-h-screen bg-surface-page text-primary md:flex">
+    <aside class="border-subtle bg-surface-panel md:flex md:h-screen md:w-64 md:flex-col md:border-r">
+      <div class="border-subtle border-b px-4 py-6 md:px-6">
         <RouterLink to="/" class="flex items-center gap-3">
-          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-app-accent">
-            <img
-              src="https://www.figma.com/api/mcp/asset/96a52647-805d-4349-b875-df4711a278b7"
-              alt=""
-              class="h-6 w-6"
-            />
-          </div>
+          <img src="/plated-logo.svg" alt="Plated logo" class="h-10 w-auto shrink-0" />
           <div>
-            <p class="text-[18px] font-semibold leading-7 tracking-[-0.03em]">Plated</p>
-            <p class="text-xs text-app-muted">Recipe Keeper</p>
+            <p class="font-display text-[20px] font-semibold leading-7 tracking-[-0.03em]">
+              Plated
+            </p>
+            <p class="text-xs text-secondary">Your Home Menu</p>
           </div>
         </RouterLink>
       </div>
@@ -88,7 +84,7 @@ function isActive(item: NavItem) {
           </RouterLink>
         </nav>
 
-        <div class="mt-3 border-app-line border-t pt-3 md:mt-auto md:pt-4">
+        <div class="mt-3 border-subtle border-t pt-3 md:mt-auto md:pt-4">
           <RouterLink
             :to="settingsNav.to"
             class="sidebar-link"

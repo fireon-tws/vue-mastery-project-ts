@@ -3,13 +3,13 @@ const actionCards = [
   {
     title: 'Add New Recipe',
     description: 'Save your favorite dishes',
-    tone: 'bg-app-accent text-white',
+    tone: 'bg-brand-primary text-on-accent',
     icon: '+',
   },
   {
     title: 'Meal Planner',
     description: 'Plan your weekly meals',
-    tone: 'bg-app-mint text-app-text',
+    tone: 'bg-brand-secondary text-primary',
     icon: '↗',
   },
 ]
@@ -75,24 +75,22 @@ const recipeSections = [
 <template>
   <div class="space-y-12">
     <section class="space-y-2">
-      <h1 class="text-[32px] font-medium leading-tight tracking-[-0.02em] md:text-[36px]">
-        Good afternoon!
-      </h1>
-      <p class="text-base text-app-muted">What would you like to cook today?</p>
+      <h1 class="display-heading max-w-[10ch]">Good afternoon!</h1>
+      <p class="text-base text-secondary">What would you like to cook today?</p>
     </section>
 
     <section class="grid gap-4 lg:grid-cols-2">
       <article
         v-for="card in actionCards"
         :key="card.title"
-        class="flex items-center justify-between rounded-xl px-6 py-5"
+        class="flex items-center justify-between rounded-card px-6 py-5"
         :class="card.tone"
       >
         <div class="space-y-1">
           <h2 class="text-xl font-medium tracking-[-0.02em]">{{ card.title }}</h2>
           <p
             class="text-sm"
-            :class="card.title === 'Add New Recipe' ? 'text-white/80' : 'text-app-text/70'"
+            :class="card.title === 'Add New Recipe' ? 'text-on-accent/80' : 'text-primary/70'"
           >
             {{ card.description }}
           </p>
@@ -103,10 +101,10 @@ const recipeSections = [
 
     <section v-for="section in recipeSections" :key="section.title" class="space-y-6">
       <div class="flex items-center justify-between gap-4">
-        <h2 class="text-[28px] font-medium tracking-[-0.02em] md:text-[32px]">
+        <h2 class="section-heading">
           {{ section.title }}
         </h2>
-        <button type="button" class="text-sm text-app-accent hover:opacity-80">
+        <button type="button" class="text-sm text-brand-primary hover:opacity-80">
           {{ section.action }}
         </button>
       </div>
@@ -115,13 +113,13 @@ const recipeSections = [
         <article
           v-for="recipe in section.recipes"
           :key="`${section.title}-${recipe.name}`"
-          class="overflow-hidden rounded-xl border border-app-line bg-white shadow-card"
+          class="overflow-hidden rounded-card border border-subtle bg-surface-panel shadow-card"
         >
           <div class="relative aspect-[41/23] overflow-hidden">
             <img :src="recipe.image" :alt="recipe.name" class="h-full w-full object-cover" />
             <button
               type="button"
-              class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-app-accent shadow-sm"
+              class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-pill bg-white/90 text-brand-primary shadow-sm"
             >
               ♥
             </button>
@@ -130,7 +128,7 @@ const recipeSections = [
           <div class="space-y-4 p-4">
             <h3 class="text-lg font-medium tracking-[-0.02em]">{{ recipe.name }}</h3>
 
-            <div class="flex items-center gap-3 text-sm text-app-muted">
+            <div class="flex items-center gap-3 text-sm text-secondary">
               <span class="flex items-center gap-1">
                 <img
                   src="https://www.figma.com/api/mcp/asset/981224f5-23a2-4773-bbc7-410bdccbb6d2"
@@ -140,11 +138,9 @@ const recipeSections = [
                 {{ recipe.time }}
               </span>
               <span
-                class="rounded-full px-2 py-0.5 text-[11px] capitalize"
+                class="rounded-pill px-2 py-0.5 text-[11px] capitalize"
                 :class="
-                  recipe.difficulty === 'easy'
-                    ? 'bg-green-100 text-green-700'
-                    : 'bg-amber-100 text-amber-700'
+                  recipe.difficulty === 'easy' ? 'bg-success text-success' : 'bg-warning text-warning'
                 "
               >
                 {{ recipe.difficulty }}
@@ -155,7 +151,7 @@ const recipeSections = [
               <span
                 v-for="tag in recipe.tags"
                 :key="tag"
-                class="rounded-full bg-app-chip px-2 py-0.5 text-[11px] text-app-text"
+                class="rounded-pill bg-brand-warm px-2 py-0.5 text-[11px] text-primary"
               >
                 {{ tag }}
               </span>

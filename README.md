@@ -1,48 +1,104 @@
-# ./
+# Plated
 
-This template should help get you started developing with Vue 3 in Vite.
+Plated is a Vue 3 practice project for managing recipes, menus, and meal planning while working through a structured Vue 3 mastery roadmap.
 
-## Recommended IDE Setup
+## Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3
+- TypeScript
+- Composition API
+- Vue Router
+- Pinia
+- Tailwind CSS v4
+- Vite
 
-## Recommended Browser Setup
+## Current Status
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+The project has the initial application shell in place:
 
-## Type Support for `.vue` Imports in TS
+- App shell with sidebar navigation
+- Route-based page structure
+- Core views for home, menus, planner, favorites, shopping list, settings, and 404
+- Tailwind-based layout and theme tokens
+- Vercel SPA rewrite config
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+The app is still in the early scaffold phase. Most feature work in state management, forms, and data flow is planned but not implemented yet.
 
-## Customize configuration
+## Routes
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- `/`
+- `/menus`
+- `/menus/new`
+- `/menus/:id`
+- `/menus/:id/edit`
+- `/planner`
+- `/shopping-list`
+- `/favorites`
+- `/settings`
+- `404`
 
-## Project Setup
+## Getting Started
+
+### Install dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Start the dev server
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Type-check and build
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint the project
 
 ```sh
 npm run lint
 ```
+
+### Preview the production build
+
+```sh
+npm run preview
+```
+
+## Project Structure
+
+```text
+src/
+  assets/
+    main.css
+  components/
+    layout/
+      AppShell.vue
+  router/
+    index.ts
+  stores/
+    counter.ts
+  views/
+    HomeView.vue
+    MenuListView.vue
+    MenuCreateView.vue
+    MenuDetailView.vue
+    MenuEditView.vue
+    PlannerView.vue
+    ShoppingListView.vue
+    FavoritesView.vue
+    SettingsView.vue
+    NotFoundView.vue
+  App.vue
+  main.ts
+```
+
+## Notes
+
+- The learning checklist lives in [docs/vue-mastery-checklist.md](docs/vue-mastery-checklist.md).
+- The product direction and scope live in [docs/project-plan.md](docs/project-plan.md).
+- A Vercel config is present in `vercel.json`, but this README does not list a production URL because no verified live deployment is documented in the repo.

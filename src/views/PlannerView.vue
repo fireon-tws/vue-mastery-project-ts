@@ -1,9 +1,6 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Weekly Planner</h2>
-    <p class="text-slate-600">Plan your meals for the week.</p>
-  </div>
+  <section class="space-y-2">
+    <h1 class="page-heading">Meal Planner</h1>
+    <p class="text-base text-secondary">Weekly planning will plug into this layout next.</p>
+  </section>
 </template>

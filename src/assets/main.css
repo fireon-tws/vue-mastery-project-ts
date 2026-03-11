@@ -1,21 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* Custom Branding for your Portfolio */
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
+  /* Brand primitives */
+  --font-sans: Inter, "SF Pro Display", "Segoe UI", sans-serif;
+  --font-display: Fraunces, Georgia, serif;
 
-  /* Modern UI spacing */
-  --spacing-container: 2rem;
+  --color-brand-primary: #ff6b35;
+  --color-brand-secondary: #a8dadc;
+  --color-brand-warm: #fef3e2;
+  --color-brand-ink: #2d2d2d;
+  --color-brand-muted: #6b6b6b;
+  --color-brand-canvas: #fafaf8;
+  --color-brand-white: #ffffff;
+
+  /* Semantic surfaces and text */
+  --color-surface-page: var(--color-brand-canvas);
+  --color-surface-panel: var(--color-brand-white);
+  --color-surface-accent: var(--color-brand-primary);
+  --color-surface-accent-soft: var(--color-brand-secondary);
+  --color-text-primary: var(--color-brand-ink);
+  --color-text-secondary: var(--color-brand-muted);
+  --color-text-on-accent: var(--color-brand-white);
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+
+  /* Status */
+  --color-success-bg: #dcfce7;
+  --color-success-text: #008236;
+  --color-warning-bg: #fef3e2;
+  --color-warning-text: #a65f00;
+  --color-info-bg: #e0f2fe;
+  --color-info-text: #0369a1;
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #b91c1c;
+
+  /* Effects and radius */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-floating: 0 18px 40px rgba(45, 45, 45, 0.12);
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --radius-panel: 16px;
+
+  /* Type scale */
+  --text-display: clamp(2.5rem, 3vw, 3.5rem);
+  --text-h1: clamp(2rem, 2.6vw, 2.25rem);
+  --text-h2: clamp(1.625rem, 2vw, 2rem);
+  --text-h3: 1.25rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+
+  /* Compatibility aliases for current app usage */
+  --color-app-bg: var(--color-surface-page);
+  --color-app-text: var(--color-text-primary);
+  --color-app-muted: var(--color-text-secondary);
+  --color-app-line: var(--color-border-subtle);
+  --color-app-accent: var(--color-surface-accent);
+  --color-app-mint: var(--color-surface-accent-soft);
+  --color-app-chip: var(--color-brand-warm);
 }
 
-/* Base styles using Native CSS Nesting */
 @layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+  :root {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: var(--color-surface-page);
+  }
 
-    &.dark {
-      @apply bg-slate-950 text-slate-50;
-    }
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-surface-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility bg-surface-page {
+  background-color: var(--color-surface-page);
+}
+
+@utility bg-surface-panel {
+  background-color: var(--color-surface-panel);
+}
+
+@utility bg-surface-accent {
+  background-color: var(--color-surface-accent);
+}
+
+@utility bg-surface-accent-soft {
+  background-color: var(--color-surface-accent-soft);
+}
+
+@utility bg-brand-primary {
+  background-color: var(--color-brand-primary);
+}
+
+@utility bg-brand-secondary {
+  background-color: var(--color-brand-secondary);
+}
+
+@utility bg-brand-warm {
+  background-color: var(--color-brand-warm);
+}
+
+@utility text-primary {
+  color: var(--color-text-primary);
+}
+
+@utility text-secondary {
+  color: var(--color-text-secondary);
+}
+
+@utility text-on-accent {
+  color: var(--color-text-on-accent);
+}
+
+@utility text-brand-primary {
+  color: var(--color-brand-primary);
+}
+
+@utility border-subtle {
+  border-color: var(--color-border-subtle);
+}
+
+@utility bg-success {
+  background-color: var(--color-success-bg);
+}
+
+@utility text-success {
+  color: var(--color-success-text);
+}
+
+@utility bg-warning {
+  background-color: var(--color-warning-bg);
+}
+
+@utility text-warning {
+  color: var(--color-warning-text);
+}
+
+@utility bg-info {
+  background-color: var(--color-info-bg);
+}
+
+@utility text-info {
+  color: var(--color-info-text);
+}
+
+@utility bg-danger {
+  background-color: var(--color-danger-bg);
+}
+
+@utility text-danger {
+  color: var(--color-danger-text);
+}
+
+@utility rounded-card {
+  border-radius: var(--radius-card);
+}
+
+@utility rounded-panel {
+  border-radius: var(--radius-panel);
+}
+
+@utility rounded-pill {
+  border-radius: var(--radius-pill);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-floating {
+  box-shadow: var(--shadow-floating);
+}
+
+/* Compatibility utilities for the current app usage */
+@utility border-app-line {
+  border-color: var(--color-app-line);
+}
+
+@utility bg-app {
+  background-color: var(--color-app-bg);
+}
+
+@utility text-app-text {
+  color: var(--color-app-text);
+}
+
+@utility text-app-muted {
+  color: var(--color-app-muted);
+}
+
+@utility bg-app-accent {
+  background-color: var(--color-app-accent);
+}
+
+@utility bg-app-mint {
+  background-color: var(--color-app-mint);
+}
+
+@utility bg-app-chip {
+  background-color: var(--color-app-chip);
+}
+
+@layer components {
+  .display-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--color-text-primary);
+  }
+
+  .page-heading {
+    font-size: var(--text-h1);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-card px-3 py-2 text-sm text-secondary transition-colors;
+  }
+
+  .sidebar-link:hover {
+    background: color-mix(in srgb, var(--color-brand-warm) 55%, transparent);
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-link--active {
+    background: var(--color-brand-warm);
+    color: var(--color-text-primary);
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
 }

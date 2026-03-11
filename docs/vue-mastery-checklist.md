@@ -58,20 +58,26 @@ Routes implemented:
 ## Layout
 
 - [x] Create `AppShell`
-- [x] Create navigation bar
+- [x] Create sidebar navigation shell
 - [x] Active link styles
+- [x] Add branded app identity and favicon
 
 ## TailwindCSS
 
 - [x] Install Tailwind
 - [x] Use Tailwind in ≥10 UI elements
 - [x] Define container layout pattern
+- [x] Establish semantic brand/theme tokens in `main.css`
 
 ## Deployment
 
 - [ ] Setup Vercel CLI
 - [ ] First deployment completed
 - [ ] Live URL verified
+
+Deployment note:
+
+- Vercel deployment is intentionally pending and will be completed after this branch is finalized.
 
 ---
 

@@ -35,37 +35,37 @@ Tech stack:
 
 ## Project Setup
 
-- [ ] Create project using `create-vue`
-- [ ] Enable **TypeScript**
-- [ ] Setup **Composition API**
-- [ ] Setup project folder structure
+- [x] Create project using `create-vue`
+- [x] Enable **TypeScript**
+- [x] Setup **Composition API**
+- [x] Setup project folder structure
 
 ## Router
 
-- [ ] Install Vue Router
-- [ ] Configure router
+- [x] Install Vue Router
+- [x] Configure router
 
 Routes implemented:
 
-- [ ] `/`
-- [ ] `/menus`
-- [ ] `/menus/new`
-- [ ] `/menus/:id`
-- [ ] `/menus/:id/edit`
-- [ ] `/planner`
-- [ ] `404`
+- [x] `/`
+- [x] `/menus`
+- [x] `/menus/new`
+- [x] `/menus/:id`
+- [x] `/menus/:id/edit`
+- [x] `/planner`
+- [x] `404`
 
 ## Layout
 
-- [ ] Create `AppShell`
-- [ ] Create navigation bar
-- [ ] Active link styles
+- [x] Create `AppShell`
+- [x] Create navigation bar
+- [x] Active link styles
 
 ## TailwindCSS
 
-- [ ] Install Tailwind
-- [ ] Use Tailwind in ≥10 UI elements
-- [ ] Define container layout pattern
+- [x] Install Tailwind
+- [x] Use Tailwind in ≥10 UI elements
+- [x] Define container layout pattern
 
 ## Deployment
 

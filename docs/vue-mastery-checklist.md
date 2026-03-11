@@ -75,10 +75,6 @@ Routes implemented:
 - [ ] First deployment completed
 - [ ] Live URL verified
 
-Deployment note:
-
-- Vercel deployment is intentionally pending and will be completed after this branch is finalized.
-
 ---
 
 # ✅ Checkpoint 2 — State Management (Pinia)

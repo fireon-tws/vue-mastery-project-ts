@@ -57,7 +57,9 @@ function isActive(item: NavItem) {
 
 <template>
   <div class="min-h-screen bg-surface-page text-primary md:flex">
-    <aside class="border-subtle bg-surface-panel md:flex md:h-screen md:w-64 md:flex-col md:border-r">
+    <aside
+      class="border-subtle bg-surface-panel md:sticky md:top-0 md:flex md:h-screen md:w-64 md:flex-col md:border-r"
+    >
       <div class="border-subtle border-b px-4 py-6 md:px-6">
         <RouterLink to="/" class="flex items-center gap-3">
           <img src="/plated-logo.svg" alt="Plated logo" class="h-10 w-auto shrink-0" />

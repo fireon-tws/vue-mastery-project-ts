@@ -1,4 +1,4 @@
-# 🍳 Home Menu Keeper
+# 🍽️ Plated
 
 A personal platform to store and manage home-cooked dishes.
 

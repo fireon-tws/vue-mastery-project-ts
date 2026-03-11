@@ -1,7 +1,7 @@
 
 # 🚀 Vue 3 Mastery Checklist
 
-This checklist tracks the implementation progress of the **Vue 3 Mastery Program** while building the **Home Menu Keeper** project.
+This checklist tracks the implementation progress of the **Vue 3 Mastery Program** while building the **Plated** project.
 
 Tech stack:
 

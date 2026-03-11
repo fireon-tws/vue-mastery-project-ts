@@ -1,21 +1,97 @@
 @import "tailwindcss";
 
 @theme {
-  /* Custom Branding for your Portfolio */
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
+  --color-app-bg: #fafaf8;
+  --color-app-text: #2d2d2d;
+  --color-app-muted: #6b6b6b;
+  --color-app-line: rgba(0, 0, 0, 0.08);
+  --color-app-accent: #ff6b35;
+  --color-app-mint: #a8dadc;
+  --color-app-chip: #fef3e2;
 
-  /* Modern UI spacing */
-  --spacing-container: 2rem;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Base styles using Native CSS Nesting */
 @layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+  :root {
+    font-family: Inter, "SF Pro Display", "Segoe UI", sans-serif;
+    color: var(--color-app-text);
+    background: var(--color-app-bg);
+  }
 
-    &.dark {
-      @apply bg-slate-950 text-slate-50;
-    }
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-app-bg);
+    color: var(--color-app-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button {
+    font: inherit;
+  }
+}
+
+@utility border-app-line {
+  border-color: var(--color-app-line);
+}
+
+@utility bg-app {
+  background-color: var(--color-app-bg);
+}
+
+@utility text-app-text {
+  color: var(--color-app-text);
+}
+
+@utility text-app-muted {
+  color: var(--color-app-muted);
+}
+
+@utility bg-app-accent {
+  background-color: var(--color-app-accent);
+}
+
+@utility bg-app-mint {
+  background-color: var(--color-app-mint);
+}
+
+@utility bg-app-chip {
+  background-color: var(--color-app-chip);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-app-text transition-colors;
+  }
+
+  .sidebar-link:hover {
+    background: rgba(254, 243, 226, 0.55);
+  }
+
+  .sidebar-link--active {
+    background: var(--color-app-chip);
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
 }

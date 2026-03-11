@@ -34,6 +34,21 @@ const router = createRouter({
       component: () => import('../views/PlannerView.vue'),
     },
     {
+      path: '/shopping-list',
+      name: 'shopping-list',
+      component: () => import('../views/ShoppingListView.vue'),
+    },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: () => import('../views/FavoritesView.vue'),
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('../views/SettingsView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue'),

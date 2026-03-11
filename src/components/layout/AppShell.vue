@@ -1,45 +1,110 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
+
+type NavItem = {
+  label: string
+  to: string
+  icon: string
+  match: (path: string) => boolean
+}
+
+const route = useRoute()
+
+const primaryNav: NavItem[] = [
+  {
+    label: 'Dashboard',
+    to: '/',
+    icon: 'https://www.figma.com/api/mcp/asset/ec0b5a05-4f67-4fe2-8466-fb21eada6f5d',
+    match: (path) => path === '/',
+  },
+  {
+    label: 'Recipes',
+    to: '/menus',
+    icon: 'https://www.figma.com/api/mcp/asset/dfc1254e-2da4-4081-964c-1e2e55898207',
+    match: (path) => path.startsWith('/menus'),
+  },
+  {
+    label: 'Meal Planner',
+    to: '/planner',
+    icon: 'https://www.figma.com/api/mcp/asset/7efbaa00-873f-41fc-84f1-91df2174c430',
+    match: (path) => path.startsWith('/planner'),
+  },
+  {
+    label: 'Shopping List',
+    to: '/shopping-list',
+    icon: 'https://www.figma.com/api/mcp/asset/5302d362-3013-424a-b2cb-4153db593d25',
+    match: (path) => path.startsWith('/shopping-list'),
+  },
+  {
+    label: 'Favorites',
+    to: '/favorites',
+    icon: 'https://www.figma.com/api/mcp/asset/f03e83e6-8012-437d-910e-960aa36a2579',
+    match: (path) => path.startsWith('/favorites'),
+  },
+]
+
+const settingsNav: NavItem = {
+  label: 'Settings',
+  to: '/settings',
+  icon: 'https://www.figma.com/api/mcp/asset/f284d1a4-6bb0-4e52-aaea-f2a9d2e4469d',
+  match: (path) => path.startsWith('/settings'),
+}
+
+function isActive(item: NavItem) {
+  return item.match(route.path)
+}
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50">
-    <header class="bg-white shadow-sm sticky top-0 z-10">
-      <nav class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-6">
-          <RouterLink to="/" class="text-xl font-bold text-brand-600 flex items-center gap-2">
-            <span class="text-2xl">🍽️</span> Plated
-          </RouterLink>
-          <div class="hidden md:flex items-center gap-1">
-            <RouterLink
-              to="/menus"
-              class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-              active-class="bg-brand-50 text-brand-700 hover:bg-brand-100 hover:text-brand-800"
-            >
-              My Menus
-            </RouterLink>
-            <RouterLink
-              to="/planner"
-              class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-              active-class="bg-brand-50 text-brand-700 hover:bg-brand-100 hover:text-brand-800"
-            >
-              Planner
-            </RouterLink>
+  <div class="min-h-screen bg-app text-app-text md:flex">
+    <aside class="border-app-line bg-white md:flex md:h-screen md:w-64 md:flex-col md:border-r">
+      <div class="border-app-line border-b px-4 py-6 md:px-6">
+        <RouterLink to="/" class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-app-accent">
+            <img
+              src="https://www.figma.com/api/mcp/asset/96a52647-805d-4349-b875-df4711a278b7"
+              alt=""
+              class="h-6 w-6"
+            />
           </div>
-        </div>
-        <div>
+          <div>
+            <p class="text-[18px] font-semibold leading-7 tracking-[-0.03em]">Plated</p>
+            <p class="text-xs text-app-muted">Recipe Keeper</p>
+          </div>
+        </RouterLink>
+      </div>
+
+      <div class="px-4 py-4 md:flex md:min-h-0 md:flex-1 md:flex-col md:px-4">
+        <nav class="scrollbar-hidden flex gap-1 overflow-x-auto md:flex-col">
           <RouterLink
-            to="/menus/new"
-            class="hidden md:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 bg-brand-600 text-white hover:bg-brand-700 h-9 px-4 py-2 shadow-sm"
+            v-for="item in primaryNav"
+            :key="item.to"
+            :to="item.to"
+            class="sidebar-link shrink-0"
+            :class="{ 'sidebar-link--active': isActive(item) }"
           >
-            Add Recipe
+            <img :src="item.icon" alt="" class="h-5 w-5 shrink-0" />
+            <span>{{ item.label }}</span>
+          </RouterLink>
+        </nav>
+
+        <div class="mt-3 border-app-line border-t pt-3 md:mt-auto md:pt-4">
+          <RouterLink
+            :to="settingsNav.to"
+            class="sidebar-link"
+            :class="{ 'sidebar-link--active': isActive(settingsNav) }"
+          >
+            <img :src="settingsNav.icon" alt="" class="h-5 w-5 shrink-0" />
+            <span>{{ settingsNav.label }}</span>
           </RouterLink>
         </div>
-      </nav>
-    </header>
+      </div>
+    </aside>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
-      <RouterView />
-    </main>
+    <div class="min-w-0 flex-1">
+      <main class="mx-auto w-full max-w-[1408px] px-4 py-6 md:px-10 md:py-8 xl:px-16">
+        <RouterView />
+      </main>
+    </div>
   </div>
 </template>

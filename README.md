@@ -101,4 +101,4 @@ src/
 
 - The learning checklist lives in [docs/vue-mastery-checklist.md](docs/vue-mastery-checklist.md).
 - The product direction and scope live in [docs/project-plan.md](docs/project-plan.md).
-- A Vercel config is present in `vercel.json`, but this README does not list a production URL because no verified live deployment is documented in the repo.
+- A Vercel config is present in `vercel.json`. Live deployment: **https://plated-five.vercel.app/**

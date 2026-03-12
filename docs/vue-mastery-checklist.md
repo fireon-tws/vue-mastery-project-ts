@@ -71,9 +71,9 @@ Routes implemented:
 
 ## Deployment
 
-- [ ] Setup Vercel CLI
-- [ ] First deployment completed
-- [ ] Live URL verified
+- [x] Setup Vercel CLI
+- [x] First deployment completed
+- [x] Live URL verified
 
 ---
 

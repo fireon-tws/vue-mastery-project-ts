@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+
+import ToastStack from '../ui/ToastStack.vue'
+import { useThemeStore } from '../../stores/theme'
 
 type NavItem = {
   label: string
@@ -9,6 +13,8 @@ type NavItem = {
 }
 
 const route = useRoute()
+const themeStore = useThemeStore()
+const { currentMode } = storeToRefs(themeStore)
 
 const primaryNav: NavItem[] = [
   {
@@ -56,7 +62,7 @@ function isActive(item: NavItem) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-surface-page text-primary md:flex">
+  <div class="min-h-screen bg-surface-page text-primary transition-colors md:flex" :data-theme="currentMode">
     <aside
       class="border-subtle bg-surface-panel md:sticky md:top-0 md:flex md:h-screen md:w-64 md:flex-col md:border-r"
     >
@@ -104,5 +110,7 @@ function isActive(item: NavItem) {
         <RouterView />
       </main>
     </div>
+
+    <ToastStack />
   </div>
 </template>

@@ -62,9 +62,31 @@
 
 @layer base {
   :root {
+    color-scheme: light;
     font-family: var(--font-sans);
     color: var(--color-text-primary);
     background: var(--color-surface-page);
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
+    --color-surface-page: #191919;
+    --color-surface-panel: #232323;
+    --color-surface-accent: #ff8a5b;
+    --color-surface-accent-soft: #335c67;
+    --color-text-primary: #f6efe6;
+    --color-text-secondary: #d4c8ba;
+    --color-text-on-accent: #1f130f;
+    --color-border-subtle: rgba(255, 255, 255, 0.12);
+    --color-brand-warm: #382d24;
+    --color-success-bg: #173224;
+    --color-success-text: #83e0a6;
+    --color-warning-bg: #423018;
+    --color-warning-text: #f4c877;
+    --color-info-bg: #183547;
+    --color-info-text: #8ecdf2;
+    --color-danger-bg: #442121;
+    --color-danger-text: #f0a1a1;
   }
 
   * {
@@ -279,5 +301,18 @@
 
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+  }
+
+  .toast-enter-active,
+  .toast-leave-active {
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .toast-enter-from,
+  .toast-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
   }
 }

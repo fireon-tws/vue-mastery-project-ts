@@ -1,75 +1,45 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
+
+import RecipeCard from '../components/recipes/RecipeCard.vue'
+import { useRecipeStore } from '../stores/recipe'
+
+const recipeStore = useRecipeStore()
+const { favoriteRecipes, recentRecipes } = storeToRefs(recipeStore)
+
 const actionCards = [
   {
     title: 'Add New Recipe',
     description: 'Save your favorite dishes',
     tone: 'bg-brand-primary text-on-accent',
     icon: '+',
+    to: '/menus/new',
   },
   {
     title: 'Meal Planner',
     description: 'Plan your weekly meals',
     tone: 'bg-brand-secondary text-primary',
     icon: '↗',
+    to: '/planner',
   },
 ]
 
-const recipeSections = [
+const recipeSections = computed(() => [
   {
     title: 'Recently Cooked',
     action: 'View all recipes',
-    recipes: [
-      {
-        name: 'Fluffy Buttermilk Pancakes',
-        time: '20 min',
-        difficulty: 'easy',
-        tags: ['breakfast', 'quick', 'family-friendly'],
-        image: 'https://www.figma.com/api/mcp/asset/334fa8b9-69e0-4b27-80ed-e91f95e99aa7',
-      },
-      {
-        name: 'Fresh Caesar Salad',
-        time: '15 min',
-        difficulty: 'easy',
-        tags: ['salad', 'vegetarian', 'quick'],
-        image: 'https://www.figma.com/api/mcp/asset/50b73912-3b9a-4956-be87-fbb3280cec68',
-      },
-      {
-        name: 'Classic Spaghetti Carbonara',
-        time: '25 min',
-        difficulty: 'medium',
-        tags: ['italian', 'pasta', 'quick'],
-        image: 'https://www.figma.com/api/mcp/asset/337775f3-60d3-4e02-a177-557cc596fff3',
-      },
-    ],
+    to: '/menus',
+    recipes: recentRecipes.value,
   },
   {
     title: 'Your Favorites',
     action: 'View all favorites',
-    recipes: [
-      {
-        name: 'Classic Spaghetti Carbonara',
-        time: '25 min',
-        difficulty: 'medium',
-        tags: ['italian', 'pasta', 'quick'],
-        image: 'https://www.figma.com/api/mcp/asset/337775f3-60d3-4e02-a177-557cc596fff3',
-      },
-      {
-        name: 'Fresh Caesar Salad',
-        time: '15 min',
-        difficulty: 'easy',
-        tags: ['salad', 'vegetarian', 'quick'],
-        image: 'https://www.figma.com/api/mcp/asset/50b73912-3b9a-4956-be87-fbb3280cec68',
-      },
-      {
-        name: 'Fluffy Buttermilk Pancakes',
-        time: '20 min',
-        difficulty: 'easy',
-        tags: ['breakfast', 'quick', 'family-friendly'],
-        image: 'https://www.figma.com/api/mcp/asset/334fa8b9-69e0-4b27-80ed-e91f95e99aa7',
-      },
-    ],
+    to: '/favorites',
+    recipes: favoriteRecipes.value,
   },
-]
+])
 </script>
 
 <template>
@@ -80,10 +50,11 @@ const recipeSections = [
     </section>
 
     <section class="grid gap-4 lg:grid-cols-2">
-      <article
+      <RouterLink
         v-for="card in actionCards"
         :key="card.title"
-        class="flex items-center justify-between rounded-card px-6 py-5"
+        :to="card.to"
+        class="flex items-center justify-between rounded-card px-6 py-5 transition-transform hover:-translate-y-0.5"
         :class="card.tone"
       >
         <div class="space-y-1">
@@ -96,7 +67,7 @@ const recipeSections = [
           </p>
         </div>
         <span class="text-3xl leading-none">{{ card.icon }}</span>
-      </article>
+      </RouterLink>
     </section>
 
     <section v-for="section in recipeSections" :key="section.title" class="space-y-6">
@@ -104,60 +75,25 @@ const recipeSections = [
         <h2 class="section-heading">
           {{ section.title }}
         </h2>
-        <button type="button" class="text-sm text-brand-primary hover:opacity-80">
+        <RouterLink :to="section.to" class="text-sm text-brand-primary hover:opacity-80">
           {{ section.action }}
-        </button>
+        </RouterLink>
       </div>
 
-      <div class="grid gap-4 xl:grid-cols-3">
-        <article
+      <div v-if="section.recipes.length" class="grid gap-4 xl:grid-cols-3">
+        <RecipeCard
           v-for="recipe in section.recipes"
-          :key="`${section.title}-${recipe.name}`"
-          class="overflow-hidden rounded-card border border-subtle bg-surface-panel shadow-card"
-        >
-          <div class="relative aspect-[41/23] overflow-hidden">
-            <img :src="recipe.image" :alt="recipe.name" class="h-full w-full object-cover" />
-            <button
-              type="button"
-              class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-pill bg-white/90 text-brand-primary shadow-sm"
-            >
-              ♥
-            </button>
-          </div>
+          :key="`${section.title}-${recipe.id}`"
+          :recipe="recipe"
+          @toggle-favorite="recipeStore.toggleFavorite"
+        />
+      </div>
 
-          <div class="space-y-4 p-4">
-            <h3 class="text-lg font-medium tracking-[-0.02em]">{{ recipe.name }}</h3>
-
-            <div class="flex items-center gap-3 text-sm text-secondary">
-              <span class="flex items-center gap-1">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/981224f5-23a2-4773-bbc7-410bdccbb6d2"
-                  alt=""
-                  class="h-4 w-4"
-                />
-                {{ recipe.time }}
-              </span>
-              <span
-                class="rounded-pill px-2 py-0.5 text-[11px] capitalize"
-                :class="
-                  recipe.difficulty === 'easy' ? 'bg-success text-success' : 'bg-warning text-warning'
-                "
-              >
-                {{ recipe.difficulty }}
-              </span>
-            </div>
-
-            <div class="flex flex-wrap gap-2">
-              <span
-                v-for="tag in recipe.tags"
-                :key="tag"
-                class="rounded-pill bg-brand-warm px-2 py-0.5 text-[11px] text-primary"
-              >
-                {{ tag }}
-              </span>
-            </div>
-          </div>
-        </article>
+      <div
+        v-else
+        class="rounded-panel border border-dashed border-subtle bg-surface-panel px-6 py-8 text-sm text-secondary"
+      >
+        No recipes in this section yet.
       </div>
     </section>
   </div>

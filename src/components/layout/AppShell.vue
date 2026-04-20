@@ -103,9 +103,9 @@ function isActive(item: NavItem) {
       </div>
     </aside>
 
-    <div class="min-w-0 flex-1">
+    <div class="min-w-0 flex-1 md:pl-64">
       <main
-        class="mx-auto w-full max-w-[1408px] px-4 py-6 pb-24 md:ml-64 md:px-10 md:py-8 md:pb-0 xl:px-16"
+        class="mx-auto w-full max-w-[1408px] px-4 py-6 pb-24 md:px-10 md:py-8 md:pb-0 xl:px-16"
       >
         <RouterView />
       </main>

@@ -2,8 +2,10 @@
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 
-import RecipeCard from '../components/recipes/RecipeCard.vue'
-import { useRecipeStore } from '../stores/recipe'
+import RecipeCard from '@/components/recipes/RecipeCard.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
+import PageHeader from '@/components/ui/PageHeader.vue'
+import { useRecipeStore } from '@/stores/recipe'
 
 const recipeStore = useRecipeStore()
 const { recipeCount, recipes } = storeToRefs(recipeStore)
@@ -11,21 +13,14 @@ const { recipeCount, recipes } = storeToRefs(recipeStore)
 
 <template>
   <section class="space-y-6">
-    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div class="space-y-2">
-        <h1 class="page-heading">Recipes</h1>
-        <p class="text-base text-secondary">
-          {{ recipeCount }} saved recipes are now managed centrally with Pinia.
-        </p>
-      </div>
-
-      <RouterLink
-        to="/menus/new"
-        class="inline-flex items-center justify-center rounded-pill bg-brand-primary px-4 py-2 text-sm font-medium text-on-accent"
-      >
-        Add recipe
-      </RouterLink>
-    </div>
+    <PageHeader
+      :title="'Recipes'"
+      :subtitle="`${recipeCount} saved recipes are now managed centrally with Pinia.`"
+    >
+      <template #actions>
+        <BaseButton to="/menus/new">Add recipe</BaseButton>
+      </template>
+    </PageHeader>
 
     <div class="grid gap-4 xl:grid-cols-3">
       <div

@@ -1,27 +1,41 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
 
-import RecipeCard from '../components/recipes/RecipeCard.vue'
-import { useRecipeStore } from '../stores/recipe'
+import RecipeCard from '@/components/recipes/RecipeCard.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
+import EmptyState from '@/components/ui/EmptyState.vue'
+import PageHeader from '@/components/ui/PageHeader.vue'
+import { useRecipeStore } from '@/stores/recipe'
 
 const recipeStore = useRecipeStore()
 const { favoriteRecipes, recentRecipes } = storeToRefs(recipeStore)
+
+const greeting = computed(() => {
+  const hour = new Date().getHours()
+
+  if (hour < 12) {
+    return 'Good morning'
+  }
+
+  if (hour < 18) {
+    return 'Good afternoon'
+  }
+
+  return 'Good evening'
+})
 
 const actionCards = [
   {
     title: 'Add New Recipe',
     description: 'Save your favorite dishes',
-    tone: 'bg-brand-primary text-on-accent',
-    icon: '+',
+    actionLabel: 'Create recipe',
     to: '/menus/new',
   },
   {
     title: 'Meal Planner',
     description: 'Plan your weekly meals',
-    tone: 'bg-brand-secondary text-primary',
-    icon: '↗',
+    actionLabel: 'Open planner',
     to: '/planner',
   },
 ]
@@ -44,30 +58,28 @@ const recipeSections = computed(() => [
 
 <template>
   <div class="space-y-12">
-    <section class="space-y-2">
-      <h1 class="display-heading max-w-[10ch]">Good afternoon!</h1>
-      <p class="text-base text-secondary">What would you like to cook today?</p>
-    </section>
+    <PageHeader
+      :title="`${greeting}!`"
+      subtitle="Pick a comforting dish and make today delicious."
+    />
 
     <section class="grid gap-4 lg:grid-cols-2">
-      <RouterLink
+      <article
         v-for="card in actionCards"
         :key="card.title"
-        :to="card.to"
-        class="flex items-center justify-between rounded-card px-6 py-5 transition-transform hover:-translate-y-0.5"
-        :class="card.tone"
+        class="rounded-2xl bg-warm p-6 shadow-sm ring-1 ring-primary/10"
       >
-        <div class="space-y-1">
-          <h2 class="text-xl font-medium tracking-[-0.02em]">{{ card.title }}</h2>
-          <p
-            class="text-sm"
-            :class="card.title === 'Add New Recipe' ? 'text-on-accent/80' : 'text-primary/70'"
-          >
-            {{ card.description }}
-          </p>
+        <div class="flex items-center justify-between gap-4">
+          <div class="space-y-1">
+            <h2 class="text-xl font-medium tracking-[-0.02em] text-primary">{{ card.title }}</h2>
+            <p class="text-sm text-secondary">
+              {{ card.description }}
+            </p>
+          </div>
+
+          <BaseButton :to="card.to" size="sm">{{ card.actionLabel }}</BaseButton>
         </div>
-        <span class="text-3xl leading-none">{{ card.icon }}</span>
-      </RouterLink>
+      </article>
     </section>
 
     <section v-for="section in recipeSections" :key="section.title" class="space-y-6">
@@ -75,9 +87,7 @@ const recipeSections = computed(() => [
         <h2 class="section-heading">
           {{ section.title }}
         </h2>
-        <RouterLink :to="section.to" class="text-sm text-brand-primary hover:opacity-80">
-          {{ section.action }}
-        </RouterLink>
+        <BaseButton variant="ghost" size="sm" :to="section.to">{{ section.action }}</BaseButton>
       </div>
 
       <div v-if="section.recipes.length" class="grid gap-4 xl:grid-cols-3">
@@ -89,12 +99,12 @@ const recipeSections = computed(() => [
         />
       </div>
 
-      <div
+      <EmptyState
         v-else
-        class="rounded-panel border border-dashed border-subtle bg-surface-panel px-6 py-8 text-sm text-secondary"
-      >
-        No recipes in this section yet.
-      </div>
+        icon="🍲"
+        title="Nothing here yet"
+        description="No recipes in this section yet. Add one to start your collection."
+      />
     </section>
   </div>
 </template>

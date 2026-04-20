@@ -64,3 +64,19 @@ export interface ModalState<T = unknown> {
   kind: string | null
   payload?: T
 }
+
+import type { Component } from 'vue'
+
+// Navigation
+export interface NavItem {
+  label: string
+  to: string
+  icon: string | Component
+  match: (path: string) => boolean
+}
+
+// Form helpers
+export type RecipeInput = Omit<MenuRecipe, 'id' | 'createdAt' | 'updatedAt'>
+export type RecipeUpdate = Partial<Omit<MenuRecipe, 'id' | 'createdAt' | 'updatedAt'>> & {
+  id: string
+}

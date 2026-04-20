@@ -2,10 +2,7 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { seedRecipes } from '../data/recipes'
-import type { MenuRecipe } from '../types/app'
-
-type RecipeInput = Omit<MenuRecipe, 'id' | 'createdAt' | 'updatedAt'>
-type RecipeUpdate = Partial<Omit<MenuRecipe, 'id' | 'createdAt' | 'updatedAt'>> & { id: string }
+import type { MenuRecipe, RecipeInput, RecipeUpdate } from '../types/app'
 
 function buildTimestamp() {
   return new Date().toISOString()

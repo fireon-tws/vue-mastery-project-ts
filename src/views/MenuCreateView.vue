@@ -1,6 +1,20 @@
+<script setup lang="ts">
+import BaseButton from '@/components/ui/BaseButton.vue'
+import EmptyState from '@/components/ui/EmptyState.vue'
+import PageHeader from '@/components/ui/PageHeader.vue'
+</script>
+
 <template>
-  <section class="space-y-2">
-    <h1 class="page-heading">Add New Recipe</h1>
-    <p class="text-base text-secondary">Form to create a new recipe.</p>
-  </section>
+  <div class="space-y-8">
+    <PageHeader title="Add New Recipe" subtitle="Save your favorite dishes to your collection." />
+    <EmptyState
+      icon="👨‍🍳"
+      title="Coming Soon"
+      description="The recipe creation form is being prepared. Check back soon!"
+    >
+      <template #action>
+        <BaseButton variant="secondary" to="/menus">Back to Recipes</BaseButton>
+      </template>
+    </EmptyState>
+  </div>
 </template>

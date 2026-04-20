@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
 
 @theme {
   /* Brand primitives */
-  --font-sans: Inter, "SF Pro Display", "Segoe UI", sans-serif;
+  --font-sans: Inter, 'SF Pro Display', 'Segoe UI', sans-serif;
   --font-display: Fraunces, Georgia, serif;
 
-  --color-brand-primary: #ff6b35;
-  --color-brand-secondary: #a8dadc;
-  --color-brand-warm: #fef3e2;
-  --color-brand-ink: #2d2d2d;
-  --color-brand-muted: #6b6b6b;
-  --color-brand-canvas: #fafaf8;
+  /* Warmer, appetizing brand colors */
+  --color-brand-primary: #D9381E; /* Rich Tomato Red */
+  --color-brand-secondary: #A3B18A; /* Sage / Olive Green */
+  --color-brand-warm: #FDF8F0; /* Soft Dough / Cream */
+  --color-brand-ink: #3E2723; /* Espresso / Cast Iron */
+  --color-brand-muted: #A08C86; /* Warm grey/brown */
+  --color-brand-canvas: #FFFBF7; /* Crema Canvas */
   --color-brand-white: #ffffff;
 
   /* Semantic surfaces and text */
@@ -22,7 +23,7 @@
   --color-text-primary: var(--color-brand-ink);
   --color-text-secondary: var(--color-brand-muted);
   --color-text-on-accent: var(--color-brand-white);
-  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-subtle: rgba(62, 39, 35, 0.08); /* Warm border */
 
   /* Status */
   --color-success-bg: #dcfce7;
@@ -35,11 +36,41 @@
   --color-danger-text: #b91c1c;
 
   /* Effects and radius */
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-floating: 0 18px 40px rgba(45, 45, 45, 0.12);
-  --radius-card: 12px;
+  --shadow-card: 0 4px 12px rgba(62, 39, 35, 0.04), 0 1px 3px rgba(62, 39, 35, 0.06);
+  --shadow-floating: 0 24px 48px rgba(62, 39, 35, 0.1);
+  --shadow-hover: 0 12px 24px rgba(62, 39, 35, 0.08);
+  --shadow-modal: 0 24px 64px rgba(62, 39, 35, 0.15);
+  --radius-card: 16px; /* Softer, plate-like radius */
   --radius-pill: 999px;
-  --radius-panel: 16px;
+  --radius-panel: 24px;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 350ms;
+  --duration-enter: 250ms;
+  --duration-leave: 180ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layering */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* Focus ring */
+  --ring-width: 2px;
+  --ring-color: var(--color-brand-primary);
+  --ring-offset: 2px;
+  --shadow-focus: 0 0 0 var(--ring-width) var(--ring-color);
+
+  /* Layout */
+  --container-max: 1408px;
+  --sidebar-width: 16rem;
 
   /* Type scale */
   --text-display: clamp(2.5rem, 3vw, 3.5rem);
@@ -70,23 +101,26 @@
 
   [data-theme='dark'] {
     color-scheme: dark;
-    --color-surface-page: #191919;
-    --color-surface-panel: #232323;
-    --color-surface-accent: #ff8a5b;
-    --color-surface-accent-soft: #335c67;
-    --color-text-primary: #f6efe6;
-    --color-text-secondary: #d4c8ba;
-    --color-text-on-accent: #1f130f;
-    --color-border-subtle: rgba(255, 255, 255, 0.12);
-    --color-brand-warm: #382d24;
-    --color-success-bg: #173224;
-    --color-success-text: #83e0a6;
-    --color-warning-bg: #423018;
-    --color-warning-text: #f4c877;
-    --color-info-bg: #183547;
-    --color-info-text: #8ecdf2;
-    --color-danger-bg: #442121;
-    --color-danger-text: #f0a1a1;
+    --color-surface-page: #231B19; /* Cast Iron base */
+    --color-surface-panel: #2F2421; /* Slightly lighter espresso */
+    --color-surface-accent: #E65100; /* Vibrant warm orange */
+    --color-surface-accent-soft: #8B9975; /* Dark sage */
+    --color-text-primary: #FDF8F0; /* Warm text */
+    --color-text-secondary: #BFAEA8;
+    --color-text-on-accent: #ffffff;
+    --color-border-subtle: rgba(253, 248, 240, 0.08);
+    --color-brand-warm: #42302A; /* Deep warm brown for active states */
+    --color-success-bg: #1B3B28;
+    --color-success-text: #96D2AF;
+    --color-warning-bg: #4B3A22;
+    --color-warning-text: #E5C384;
+    --color-info-bg: #1A3E54;
+    --color-info-text: #96CBED;
+    --color-danger-bg: #4A2626;
+    --color-danger-text: #E3A3A3;
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.4);
+    --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.6);
   }
 
   * {
@@ -225,6 +259,23 @@
 
 @utility shadow-floating {
   box-shadow: var(--shadow-floating);
+}
+
+@utility focus-ring {
+  outline: var(--ring-width) solid var(--ring-color);
+  outline-offset: var(--ring-offset);
+}
+
+@utility transition-base {
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+@utility transition-fast {
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+@utility transition-slow {
+  transition: all var(--duration-slow) var(--ease-out);
 }
 
 /* Compatibility utilities for the current app usage */

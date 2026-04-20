@@ -1,6 +1,20 @@
+<script setup lang="ts">
+import BaseButton from '@/components/ui/BaseButton.vue'
+import EmptyState from '@/components/ui/EmptyState.vue'
+import PageHeader from '@/components/ui/PageHeader.vue'
+</script>
+
 <template>
-  <section class="space-y-2">
-    <h1 class="page-heading">Shopping List</h1>
-    <p class="text-base text-secondary">Shopping items will be added into this layout next.</p>
-  </section>
+  <div class="space-y-8">
+    <PageHeader title="Shopping List" subtitle="Auto-generated from your meal plan." />
+    <EmptyState
+      icon="🛒"
+      title="No Items Yet"
+      description="Plan some meals first, then your shopping list will appear here."
+    >
+      <template #action>
+        <BaseButton variant="primary" to="/planner">Go to Planner</BaseButton>
+      </template>
+    </EmptyState>
+  </div>
 </template>
